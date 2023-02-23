@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href="style.css">
+</head>
+<body>
+    <div class="header">
+        <button class='Reset'>Square Selection</button>
+    </div>
+    <div class="container"></div>
+    
+    <script>
+        const container = document.querySelector('.container');
+        const reset = document.querySelector('.Reset');
+        let sketch = document.querySelectorAll('.sketchdiv');
+        
+       
+        function drawbox(numberofbox = 16){
+            let squaredimension = 750 / numberofbox;
+            let totalboxes = numberofbox * numberofbox;
+            console.log(squaredimension);
+            console.log(totalboxes);
+
+            for(i=0; i < totalboxes ; i++){
+            const newdiv = document.createElement('div');
+            newdiv.classList.add('sketchdiv');
+            newdiv.setAttribute('style', `height: ${squaredimension}px; width: ${squaredimension}px;`)
+            container.appendChild(newdiv);
+
+            sketch = document.querySelectorAll('.sketchdiv');
+            sketch.forEach(element => element.addEventListener('mouseover', fillBox));
+        } 
+        }   
+        
+        function fillBox(){
+            this.style.backgroundColor = 'gray';
+        }
+    
+        function squarereset(){
+             let squareprompt = prompt("How many squares");
+             sketch.forEach(e => container.removeChild(e));
+             drawbox(squareprompt);
+
+
+        }
+
+   
+        drawbox();
+        reset.addEventListener('click', squarereset);
+        
+
+        
+        
+
+     
+       
+
+        
+        
+    </script>
+</body>
+</html>
